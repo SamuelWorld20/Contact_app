@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Contact {
   String name;
   String email;
@@ -9,8 +7,8 @@ class Contact {
   Contact({
     // @required annotation makes sure that an
     // optional parameter is actually passed in
-    @required this.name,
-    @required this.email,
-    @required this.phoneNumber,
+    required this.name,
+    required this.email,
+    required this.phoneNumber,
   });
 }
