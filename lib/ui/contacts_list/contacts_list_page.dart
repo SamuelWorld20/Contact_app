@@ -7,31 +7,13 @@ class ContactsListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Contacts'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Contact test',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              'Contact test',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              'Contact test',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              'Contact test',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              'Contact test',
-              style: TextStyle(fontSize: 30),
-            ),
-          ],
+      body: ListView.builder(
+        itemCount: 30,
+        itemBuilder: (context, index) => Center(
+          child: Text(
+            'Contact test',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
       ),
     );
