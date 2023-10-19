@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:faker/faker.dart';
 
 class ContactsListPage extends StatelessWidget {
   @override
@@ -9,9 +10,10 @@ class ContactsListPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 30,
+        // Runs and build every single list item
         itemBuilder: (context, index) => Center(
           child: Text(
-            'Contact test',
+            Faker().person.firstName() + ' ' + Faker().person.lastName(),
             style: TextStyle(fontSize: 30),
           ),
         ),
