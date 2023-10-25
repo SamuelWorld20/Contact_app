@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import './/data/contact.dart';
 
-class ContactsListPage extends StatelessWidget {
-  // underscore makes it a private modifier
+class ContactsListPage extends StatefulWidget {
+  @override
+  State<ContactsListPage> createState() => _ContactsListState();
+}
+
+class _ContactsListState extends State<ContactsListPage> {
   List<Contact> _contacts = List.generate(
     50,
     (index) => Contact(
@@ -22,7 +26,6 @@ class ContactsListPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: _contacts.length,
-        // Runs and build every single list item
         itemBuilder: (context, index) => ListTile(
           title: Text(_contacts[index].name),
           subtitle: Text(_contacts[index].email),
