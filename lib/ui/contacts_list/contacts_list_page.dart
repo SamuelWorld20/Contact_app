@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import './/data/contact.dart';
+import './/ui/contacts_list/widget/contact_tile.dart';
 
 class ContactsListPage extends StatefulWidget {
   @override
@@ -33,34 +34,7 @@ class _ContactsListState extends State<ContactsListPage> {
       ),
       body: ListView.builder(
         itemCount: _contacts.length,
-        itemBuilder: (context, index) => ListTile(
-          title: Text(_contacts[index].name),
-          subtitle: Text(_contacts[index].email),
-          trailing: IconButton(
-            icon: Icon(
-              _contacts[index].isFavorite ? Icons.star : Icons.star_border,
-              color: _contacts[index].isFavorite ? Colors.amber : Colors.grey,
-            ),
-            onPressed: () {
-              setState(() {
-                _contacts[index].isFavorite = !_contacts[index].isFavorite;
-                // Takes in a higher order function which gets passed two contacts
-                _contacts.sort((a, b) {
-                  if (a.isFavorite) {
-                    // contactOne will be BEFORE contactTwo
-                    return -1;
-                  } else if (b.isFavorite) {
-                    // contactOne will be AFTER contactTwo
-                    return 1;
-                  } else {
-                    // the position doesn't change
-                    return 0;
-                  }
-                });
-              });
-            },
-          ),
-        ),
+        itemBuilder: (context, index) => ContactTile(contacts: _contacts),
       ),
     );
   }
