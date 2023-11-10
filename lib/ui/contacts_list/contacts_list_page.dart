@@ -24,6 +24,7 @@ class _ContactsListState extends State<ContactsListPage> {
     );
   }
 
+  // build() runs when the state changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +44,19 @@ class _ContactsListState extends State<ContactsListPage> {
             onPressed: () {
               setState(() {
                 _contacts[index].isFavorite = !_contacts[index].isFavorite;
+                // Takes in a higher order function which gets passed two contacts
+                _contacts.sort((a, b) {
+                  if (a.isFavorite) {
+                    // contactOne will be BEFORE contactTwo
+                    return -1;
+                  } else if (b.isFavorite) {
+                    // contactOne will be AFTER contactTwo
+                    return 1;
+                  } else {
+                    // the position doesn't change
+                    return 0;
+                  }
+                });
               });
             },
           ),
