@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
+import 'package:scoped_model/scoped_model.dart';
+import '../model/contacts_model.dart';
 import './/data/contact.dart';
 import './/ui/contacts_list/widget/contact_tile.dart';
 
@@ -18,30 +20,15 @@ class _ContactsListState extends State<ContactsListPage> {
       appBar: AppBar(
         title: const Text('Contacts'),
       ),
-      body: ListView.builder(
-        itemCount: _contacts.length,
-        itemBuilder: (context, index) => ContactTile(
-          contacts: _contacts[index],
-          onFavoritePressed: () {
-            setState(() {
-              _contacts[index].isFavorite = !_contacts[index].isFavorite;
-              // Takes in a higher order function which gets passed two contacts
-              _contacts.sort((a, b) {
-                if (a.isFavorite) {
-                  // contactOne will be BEFORE contactTwo
-                  return -1;
-                } else if (b.isFavorite) {
-                  // contactOne will be AFTER contactTwo
-                  return 1;
-                } else {
-                  // the position doesn't change
-                  return 0;
-                }
-              });
-            });
-          },
-        ),
-      ),
+      body: ScopedModelDescendant<ContactsModel>(
+          builder: (context, child, model) {
+        return ListView.builder(
+          itemCount: model.contacts.length,
+          itemBuilder: (context, index) => ContactTile(
+            contactIndex: index,
+          ),
+        );
+      }),
     );
   }
 }

@@ -14,4 +14,20 @@ class ContactsModel extends Model {
 
   // get only property, makes sure that that the property is not accessed from another class
   List<Contact> get contacts => _contacts;
+
+  void changeFavoriteStatus(int index) {
+    _contacts[index].isFavorite = !_contacts[index].isFavorite;
+    _contacts.sort((a, b) {
+      if (a.isFavorite) {
+        // contactOne will be BEFORE contactTwo
+        return -1;
+      } else if (b.isFavorite) {
+        // contactOne will be AFTER contactTwo
+        return 1;
+      } else {
+        // the position doesn't change
+        return 0;
+      }
+    });
+  }
 }
