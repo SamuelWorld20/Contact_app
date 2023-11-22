@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   faker: ^2.0.0
+  scoped_model: ^2.0.0
 
 dev_dependencies:
   flutter_test:

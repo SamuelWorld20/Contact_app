@@ -9,21 +9,7 @@ class ContactsListPage extends StatefulWidget {
 }
 
 class _ContactsListState extends State<ContactsListPage> {
-  late List<Contact> _contacts = [];
-
   // Runs when the widget is initialized
-  @override
-  void initState() {
-    super.initState();
-    _contacts = List.generate(
-      50,
-      (index) => Contact(
-        name: Faker().person.firstName() + ' ' + Faker().person.lastName(),
-        email: Faker().internet.freeEmail(),
-        phoneNumber: Faker().randomGenerator.integer(1000000).toString(),
-      ),
-    );
-  }
 
   // build() runs when the state changes
   @override
