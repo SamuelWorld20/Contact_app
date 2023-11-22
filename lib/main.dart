@@ -1,4 +1,3 @@
-import 'package:demo/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import './ui/contacts_list/contacts_list_page.dart';
