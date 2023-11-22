@@ -34,7 +34,27 @@ class _ContactsListState extends State<ContactsListPage> {
       ),
       body: ListView.builder(
         itemCount: _contacts.length,
-        itemBuilder: (context, index) => ContactTile(contacts: _contacts),
+        itemBuilder: (context, index) => ContactTile(
+          contacts: _contacts[index],
+          onFavoritePressed: () {
+            setState(() {
+              _contacts[index].isFavorite = !_contacts[index].isFavorite;
+              // Takes in a higher order function which gets passed two contacts
+              _contacts.sort((a, b) {
+                if (a.isFavorite) {
+                  // contactOne will be BEFORE contactTwo
+                  return -1;
+                } else if (b.isFavorite) {
+                  // contactOne will be AFTER contactTwo
+                  return 1;
+                } else {
+                  // the position doesn't change
+                  return 0;
+                }
+              });
+            });
+          },
+        ),
       ),
     );
   }
