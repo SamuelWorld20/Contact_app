@@ -15,22 +15,20 @@ class ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<ContactsModel>(
-        builder: (context, child, model) {
-      final displayedContact = model.contacts[contactIndex];
-      return ListTile(
-        title: Text(displayedContact.name),
-        subtitle: Text(displayedContact.email),
-        trailing: IconButton(
-          icon: Icon(
-            displayedContact.isFavorite ? Icons.star : Icons.star_border,
-            color: displayedContact.isFavorite ? Colors.amber : Colors.grey,
-          ),
-          onPressed: () {
-            model.changeFavoriteStatus(contactIndex);
-          },
+    final model = ScopedModel.of<ContactsModel>(context);
+    final displayedContact = model.contacts[contactIndex];
+    return ListTile(
+      title: Text(displayedContact.name),
+      subtitle: Text(displayedContact.email),
+      trailing: IconButton(
+        icon: Icon(
+          displayedContact.isFavorite ? Icons.star : Icons.star_border,
+          color: displayedContact.isFavorite ? Colors.amber : Colors.grey,
         ),
-      );
-    });
+        onPressed: () {
+          model.changeFavoriteStatus(contactIndex);
+        },
+      ),
+    );
   }
 }
