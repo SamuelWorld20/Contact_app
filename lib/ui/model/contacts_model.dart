@@ -17,18 +17,38 @@ class ContactsModel extends Model {
 
   void changeFavoriteStatus(int index) {
     _contacts[index].isFavorite = !_contacts[index].isFavorite;
-    _contacts.sort((a, b) {
-      if (a.isFavorite) {
-        // contactOne will be BEFORE contactTwo
-        return -1;
-      } else if (b.isFavorite) {
-        // contactOne will be AFTER contactTwo
-        return 1;
-      } else {
-        // the position doesn't change
-        return 0;
-      }
-    });
+    _sortContacts();
     notifyListeners();
+  }
+
+  void _sortContacts() {
+    _contacts.sort((a, b) {
+      int comparisonResult;
+
+      comparisonResult = _CompareBasedOnFavoriteStatus(a, b);
+
+      if (comparisonResult == 0) {
+        comparisonResult = _compareAlphabetically(a, b);
+      }
+
+      return comparisonResult;
+    });
+  }
+
+  int _CompareBasedOnFavoriteStatus(Contact a, Contact b) {
+    if (a.isFavorite) {
+      // contactOne will be BEFORE contactTwo
+      return -1;
+    } else if (b.isFavorite) {
+      // contactOne will be AFTER contactTwo
+      return 1;
+    } else {
+      // the position doesn't change
+      return 0;
+    }
+  }
+
+  int _compareAlphabetically(Contact a, Contact b) {
+    return a.name.compareTo(b.name);
   }
 }
