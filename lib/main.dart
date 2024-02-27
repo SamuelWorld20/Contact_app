@@ -1,3 +1,4 @@
+import 'package:demo/ui/contact/contact_create_page.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import './ui/contacts_list/contacts_list_page.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: ContactsListPage(),
+        home: ContactCreatePage(),
       ),
     );
   }
